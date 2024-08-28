@@ -1,0 +1,23 @@
+apiVersion: eginnovations.com/v1beta1
+kind: EgUniversalAgent
+metadata:
+  name: eguniversalagent
+  namespace: egagent
+spec:
+  features:
+    apm:
+      enabled: true
+      workLoadsToMonitor:
+        - "ReplicaSet"
+      monitoredNamespaces:
+        - "pet*"
+      ignoredNamespaces:
+        - "test"
+      java:
+        enabled: true
+        labelsToMatch:
+          - name: "app"
+            value: "petclinic"
+            containerSelection: "FIRST"
+        config:
+          egBtmSetLabel: "true"

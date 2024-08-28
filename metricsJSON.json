@@ -1,0 +1,496 @@
+{
+  "total_node": 1,
+  "total_pods": 10,
+  "node_metrics": [
+    {
+      "node_address": "192.168.49.2",
+      "node_name": "minikube",
+      "kernel_version": "5.15.146.1-microsoft-standard-WSL2",
+      "os_image": "Ubuntu 22.04.4 LTS",
+      "container_runtime_version": "docker://26.1.1",
+      "kubelet_version": "v1.30.0",
+      "pod_cidr": "10.244.0.0/24",
+      "system_uuid": "e873f569d7a24c5894164aa3c2f5f65b",
+      "internal_ip": "192.168.49.2",
+      "capacity_cpu": "12",
+      "capacity_ephemeral_storage": "1055762868Ki",
+      "capacity_pods": "110",
+      "capacity_memory": "7976180Ki",
+      "allocatable_cpu": "12",
+      "allocatable_pods": "110",
+      "allocatable_memory": "7976180Ki",
+      "created_timestamp": "2024-08-14T13:17:00+05:30"
+    }
+  ],
+  "namespace_metrics": [
+    {
+      "name": "default",
+      "uid": "b1c80ba5-f686-4ae4-9734-db5d09c3993a",
+      "created_timestamp": "2024-08-14T13:17:01+05:30",
+      "status_phase": "Active",
+      "pods_metrics": [
+        {
+          "pod_name": "multicontainer-6999f6f845-qfqhn",
+          "namespace": "default",
+          "uid": "1cc0a9b5-c20e-49a7-9bd6-5ec9e57bac98",
+          "host_ip": "192.168.49.2",
+          "pod_ip": "10.244.0.8",
+          "node_name": "minikube",
+          "annotations": null,
+          "labels": {
+            "app": "multicontainer",
+            "pod-template-hash": "6999f6f845"
+          },
+          "container_name": "nginx",
+          "container_image": "nginx:latest",
+          "container_id": "docker://c2d7eb390800f98141377618636b587a09851c3fb09276c4290df493af20e186"
+        },
+        {
+          "pod_name": "petclinic-556f6787d-lxrhc",
+          "namespace": "default",
+          "uid": "d29a72ee-0242-44ee-9444-938acc24d8f1",
+          "host_ip": "192.168.49.2",
+          "pod_ip": "10.244.0.5",
+          "node_name": "minikube",
+          "annotations": null,
+          "labels": {
+            "app": "petclinic",
+            "pod-template-hash": "556f6787d"
+          },
+          "container_name": "petclinic",
+          "container_image": "egapm/springboot:petclinic-tomcat-openjdk8jre",
+          "container_id": "docker://b538370da802a6c463285c65161bca9b29123c9022b8bd6d3b8ad5b6ee416158"
+        }
+      ],
+      "deployment_metrics": [
+        {
+          "name": "default",
+          "uid": "b1c80ba5-f686-4ae4-9734-db5d09c3993a",
+          "created_timestamp": "2024-08-14T13:17:01+05:30",
+          "annotations": null
+        },
+        {
+          "name": "default",
+          "uid": "b1c80ba5-f686-4ae4-9734-db5d09c3993a",
+          "created_timestamp": "2024-08-14T13:17:01+05:30",
+          "annotations": null
+        }
+      ],
+      "services_metrics": [
+        {
+          "name": "kubernetes",
+          "namespace": "default",
+          "uid": "3050cd2b-fe0c-4ced-96f1-7b337c7e0d7a",
+          "created_timestamp": "2024-08-14T13:17:02+05:30",
+          "spec": {
+            "ports": [
+              {
+                "name": "https",
+                "protocol": "TCP",
+                "port": 443,
+                "targetPort": 8443
+              }
+            ],
+            "clusterIP": "10.96.0.1",
+            "clusterIPs": [
+              "10.96.0.1"
+            ],
+            "type": "ClusterIP",
+            "sessionAffinity": "None",
+            "ipFamilies": [
+              "IPv4"
+            ],
+            "ipFamilyPolicy": "SingleStack",
+            "internalTrafficPolicy": "Cluster"
+          }
+        },
+        {
+          "name": "petclinic",
+          "namespace": "default",
+          "uid": "f8053b06-3d8f-43be-82da-c607c43e0f5e",
+          "created_timestamp": "2024-08-14T13:26:37+05:30",
+          "spec": {
+            "ports": [
+              {
+                "protocol": "TCP",
+                "port": 8080,
+                "targetPort": 8080,
+                "nodePort": 31112
+              }
+            ],
+            "selector": {
+              "app": "petclinic"
+            },
+            "clusterIP": "10.104.77.138",
+            "clusterIPs": [
+              "10.104.77.138"
+            ],
+            "type": "NodePort",
+            "sessionAffinity": "None",
+            "externalTrafficPolicy": "Cluster",
+            "ipFamilies": [
+              "IPv4"
+            ],
+            "ipFamilyPolicy": "SingleStack",
+            "internalTrafficPolicy": "Cluster"
+          }
+        }
+      ],
+      "replica_metrics": [
+        {
+          "name": "multicontainer-68496d5b44",
+          "namespace": "default",
+          "uid": "00931010-f1a7-4409-ab4d-b42f8199b3af",
+          "created_timestamp": "2024-08-21T16:49:10+05:30",
+          "container_image": "nginx:latest",
+          "container_port": 80,
+          "cpu": "0",
+          "memory": "0"
+        },
+        {
+          "name": "multicontainer-6999f6f845",
+          "namespace": "default",
+          "uid": "b043e806-3674-4136-8d61-23c2bef0858f",
+          "created_timestamp": "2024-08-21T16:52:09+05:30",
+          "container_image": "nginx:latest",
+          "container_port": 80,
+          "cpu": "0",
+          "memory": "0"
+        },
+        {
+          "name": "petclinic-556f6787d",
+          "namespace": "default",
+          "uid": "9df9d1c1-8466-40d5-ad98-0e012007b8db",
+          "created_timestamp": "2024-08-14T13:26:37+05:30",
+          "container_image": "egapm/springboot:petclinic-tomcat-openjdk8jre",
+          "container_port": 8080,
+          "cpu": "0",
+          "memory": "0"
+        }
+      ]
+    },
+    {
+      "name": "kube-node-lease",
+      "uid": "eb2b7358-1fba-4ecc-8c93-2d554d7359c1",
+      "created_timestamp": "2024-08-14T13:17:01+05:30",
+      "status_phase": "Active"
+    },
+    {
+      "name": "kube-public",
+      "uid": "24ad69fb-1651-482b-a4d2-b55871bc3f85",
+      "created_timestamp": "2024-08-14T13:17:01+05:30",
+      "status_phase": "Active"
+    },
+    {
+      "name": "kube-system",
+      "uid": "7e3e1520-d2c1-4468-a4d3-9e2deb6d8dee",
+      "created_timestamp": "2024-08-14T13:17:01+05:30",
+      "status_phase": "Active",
+      "pods_metrics": [
+        {
+          "pod_name": "coredns-7db6d8ff4d-hhkqc",
+          "namespace": "kube-system",
+          "uid": "d622ddfc-48bc-4611-9f68-9ebb119db2bb",
+          "host_ip": "192.168.49.2",
+          "pod_ip": "10.244.0.2",
+          "node_name": "minikube",
+          "annotations": null,
+          "labels": {
+            "k8s-app": "kube-dns",
+            "pod-template-hash": "7db6d8ff4d"
+          },
+          "container_name": "coredns",
+          "container_image": "registry.k8s.io/coredns/coredns:v1.11.1",
+          "container_id": "docker://e26394844cf8fa57d6d18d2c3b0d6e0db6144fae0fca1e4ead5854517fa22f99"
+        },
+        {
+          "pod_name": "etcd-minikube",
+          "namespace": "kube-system",
+          "uid": "e4e438bf-d23e-48ce-a6c6-7bcfb61bc7da",
+          "host_ip": "192.168.49.2",
+          "pod_ip": "192.168.49.2",
+          "node_name": "minikube",
+          "host_network": true,
+          "annotations": {
+            "kubeadm.kubernetes.io/etcd.advertise-client-urls": "https://192.168.49.2:2379",
+            "kubernetes.io/config.hash": "063d6b9688927e601f52fd818d1305c5",
+            "kubernetes.io/config.mirror": "063d6b9688927e601f52fd818d1305c5",
+            "kubernetes.io/config.seen": "2024-08-14T07:47:03.766009809Z",
+            "kubernetes.io/config.source": "file"
+          },
+          "labels": {
+            "component": "etcd",
+            "tier": "control-plane"
+          },
+          "container_name": "etcd",
+          "container_image": "registry.k8s.io/etcd:3.5.12-0",
+          "container_id": "docker://0ad30c06f79eb8d8e667f23573126cac30446bae03549c58e852577f452cb2c8"
+        },
+        {
+          "pod_name": "kube-apiserver-minikube",
+          "namespace": "kube-system",
+          "uid": "b7be0248-6dbc-4515-9dc3-d7dd06e35904",
+          "host_ip": "192.168.49.2",
+          "pod_ip": "192.168.49.2",
+          "node_name": "minikube",
+          "host_network": true,
+          "annotations": {
+            "kubeadm.kubernetes.io/kube-apiserver.advertise-address.endpoint": "192.168.49.2:8443",
+            "kubernetes.io/config.hash": "3c555f828409b009ebee39fdbedfcac0",
+            "kubernetes.io/config.mirror": "3c555f828409b009ebee39fdbedfcac0",
+            "kubernetes.io/config.seen": "2024-08-14T07:46:57.424758863Z",
+            "kubernetes.io/config.source": "file"
+          },
+          "labels": {
+            "component": "kube-apiserver",
+            "tier": "control-plane"
+          },
+          "container_name": "kube-apiserver",
+          "container_image": "registry.k8s.io/kube-apiserver:v1.30.0",
+          "container_id": "docker://f0c6bbf72affbc44d1cabe7cd8751aa12599811f0cba3b8414f6717d0afdb487"
+        },
+        {
+          "pod_name": "kube-controller-manager-minikube",
+          "namespace": "kube-system",
+          "uid": "6ec6bf6b-96b7-4c58-9137-544bf935503b",
+          "host_ip": "192.168.49.2",
+          "pod_ip": "192.168.49.2",
+          "node_name": "minikube",
+          "host_network": true,
+          "annotations": {
+            "kubernetes.io/config.hash": "7fd44e8d11c3e0ffe6b1825e2a1f2270",
+            "kubernetes.io/config.mirror": "7fd44e8d11c3e0ffe6b1825e2a1f2270",
+            "kubernetes.io/config.seen": "2024-08-14T07:46:57.424750939Z",
+            "kubernetes.io/config.source": "file"
+          },
+          "labels": {
+            "component": "kube-controller-manager",
+            "tier": "control-plane"
+          },
+          "container_name": "kube-controller-manager",
+          "container_image": "registry.k8s.io/kube-controller-manager:v1.30.0",
+          "container_id": "docker://7da9cde983c20d085e614b478a41e91aa5ebea38107f72b0262f38ba911a355b"
+        },
+        {
+          "pod_name": "kube-proxy-4dkm4",
+          "namespace": "kube-system",
+          "uid": "3aeed344-5397-499f-b699-0d6c441116d3",
+          "host_ip": "192.168.49.2",
+          "pod_ip": "192.168.49.2",
+          "node_name": "minikube",
+          "host_network": true,
+          "annotations": null,
+          "labels": {
+            "controller-revision-hash": "79cf874c65",
+            "k8s-app": "kube-proxy",
+            "pod-template-generation": "1"
+          },
+          "container_name": "kube-proxy",
+          "container_image": "registry.k8s.io/kube-proxy:v1.30.0",
+          "container_id": "docker://98b62abec9f41c01491bf737f77c175528fa43118f2e8586478895dacbc51d8e"
+        },
+        {
+          "pod_name": "kube-scheduler-minikube",
+          "namespace": "kube-system",
+          "uid": "ca9e7d54-e745-48b1-b805-ad56a1bf5e73",
+          "host_ip": "192.168.49.2",
+          "pod_ip": "192.168.49.2",
+          "node_name": "minikube",
+          "host_network": true,
+          "annotations": {
+            "kubernetes.io/config.hash": "f9c8e1d0d74b1727abdb4b4a31d3a7c1",
+            "kubernetes.io/config.mirror": "f9c8e1d0d74b1727abdb4b4a31d3a7c1",
+            "kubernetes.io/config.seen": "2024-08-14T07:47:03.766015347Z",
+            "kubernetes.io/config.source": "file"
+          },
+          "labels": {
+            "component": "kube-scheduler",
+            "tier": "control-plane"
+          },
+          "container_name": "kube-scheduler",
+          "container_image": "registry.k8s.io/kube-scheduler:v1.30.0",
+          "container_id": "docker://e9d28d38b2f46c85ccf9dde35f23dc8c58e824a8a3b9c4b74ee288c87db73b8f"
+        },
+        {
+          "pod_name": "storage-provisioner",
+          "namespace": "kube-system",
+          "uid": "f7f899cb-7bf1-4681-b834-6315b477cb8e",
+          "host_ip": "192.168.49.2",
+          "pod_ip": "192.168.49.2",
+          "node_name": "minikube",
+          "host_network": true,
+          "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Pod\",\"metadata\":{\"annotations\":{},\"labels\":{\"addonmanager.kubernetes.io/mode\":\"Reconcile\",\"integration-test\":\"storage-provisioner\"},\"name\":\"storage-provisioner\",\"namespace\":\"kube-system\"},\"spec\":{\"containers\":[{\"command\":[\"/storage-provisioner\"],\"image\":\"gcr.io/k8s-minikube/storage-provisioner:v5\",\"imagePullPolicy\":\"IfNotPresent\",\"name\":\"storage-provisioner\",\"volumeMounts\":[{\"mountPath\":\"/tmp\",\"name\":\"tmp\"}]}],\"hostNetwork\":true,\"serviceAccountName\":\"storage-provisioner\",\"volumes\":[{\"hostPath\":{\"path\":\"/tmp\",\"type\":\"Directory\"},\"name\":\"tmp\"}]}}\n"
+          },
+          "labels": {
+            "addonmanager.kubernetes.io/mode": "Reconcile",
+            "integration-test": "storage-provisioner"
+          },
+          "container_name": "storage-provisioner",
+          "container_image": "gcr.io/k8s-minikube/storage-provisioner:v5",
+          "container_id": "docker://0f9203aad48f1e88a89ea675aa80215bc90b8999f4fcf6d61c7726c266cfb135"
+        }
+      ],
+      "deployment_metrics": [
+        {
+          "name": "kube-system",
+          "uid": "7e3e1520-d2c1-4468-a4d3-9e2deb6d8dee",
+          "created_timestamp": "2024-08-14T13:17:01+05:30",
+          "annotations": null
+        }
+      ],
+      "daemons_metrics": [
+        {
+          "name": "kube-proxy",
+          "namespace": "kube-system",
+          "uid": "9bc7288f-ca89-4cdf-8be3-78c59d278e80",
+          "created_timestamp": "2024-08-14T13:17:03+05:30",
+          "containers": [
+            {
+              "name": "kube-proxy",
+              "image": "registry.k8s.io/kube-proxy:v1.30.0",
+              "command": [
+                "/usr/local/bin/kube-proxy",
+                "--config=/var/lib/kube-proxy/config.conf",
+                "--hostname-override=$(NODE_NAME)"
+              ],
+              "env": [
+                {
+                  "name": "NODE_NAME",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "spec.nodeName"
+                    }
+                  }
+                }
+              ],
+              "resources": {},
+              "volumeMounts": [
+                {
+                  "name": "kube-proxy",
+                  "mountPath": "/var/lib/kube-proxy"
+                },
+                {
+                  "name": "xtables-lock",
+                  "mountPath": "/run/xtables.lock"
+                },
+                {
+                  "name": "lib-modules",
+                  "readOnly": true,
+                  "mountPath": "/lib/modules"
+                }
+              ],
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File",
+              "imagePullPolicy": "IfNotPresent",
+              "securityContext": {
+                "privileged": true
+              }
+            }
+          ]
+        }
+      ],
+      "services_metrics": [
+        {
+          "name": "kube-dns",
+          "namespace": "kube-system",
+          "uid": "533e998a-6580-412c-b19a-7d578e8d8de5",
+          "created_timestamp": "2024-08-14T13:17:03+05:30",
+          "spec": {
+            "ports": [
+              {
+                "name": "dns",
+                "protocol": "UDP",
+                "port": 53,
+                "targetPort": 53
+              },
+              {
+                "name": "dns-tcp",
+                "protocol": "TCP",
+                "port": 53,
+                "targetPort": 53
+              },
+              {
+                "name": "metrics",
+                "protocol": "TCP",
+                "port": 9153,
+                "targetPort": 9153
+              }
+            ],
+            "selector": {
+              "k8s-app": "kube-dns"
+            },
+            "clusterIP": "10.96.0.10",
+            "clusterIPs": [
+              "10.96.0.10"
+            ],
+            "type": "ClusterIP",
+            "sessionAffinity": "None",
+            "ipFamilies": [
+              "IPv4"
+            ],
+            "ipFamilyPolicy": "SingleStack",
+            "internalTrafficPolicy": "Cluster"
+          }
+        }
+      ],
+      "replica_metrics": [
+        {
+          "name": "coredns-7db6d8ff4d",
+          "namespace": "kube-system",
+          "uid": "85d7122d-9027-44db-b9ba-a34aa9b4e9d0",
+          "created_timestamp": "2024-08-14T13:17:16+05:30",
+          "container_image": "registry.k8s.io/coredns/coredns:v1.11.1",
+          "container_port": 53,
+          "cpu": "100m",
+          "memory": "70Mi"
+        }
+      ]
+    },
+    {
+      "name": "petclinic",
+      "uid": "38f2a96f-e522-4df9-8617-5ab0a8d24a76",
+      "created_timestamp": "2024-08-14T13:25:41+05:30",
+      "status_phase": "Active",
+      "pods_metrics": [
+        {
+          "pod_name": "petclinic-556f6787d-4ftpr",
+          "namespace": "petclinic",
+          "uid": "3dfde271-6b32-4805-8f5a-ec8e458f2af6",
+          "host_ip": "192.168.49.2",
+          "pod_ip": "10.244.0.6",
+          "node_name": "minikube",
+          "annotations": null,
+          "labels": {
+            "app": "petclinic",
+            "pod-template-hash": "556f6787d"
+          },
+          "container_name": "petclinic",
+          "container_image": "egapm/springboot:petclinic-tomcat-openjdk8jre",
+          "container_id": "docker://18671c7acdf4e108e3343e9e8eef9260da47b8f8202e13f388a513b15ee3a36d"
+        }
+      ],
+      "deployment_metrics": [
+        {
+          "name": "petclinic",
+          "uid": "38f2a96f-e522-4df9-8617-5ab0a8d24a76",
+          "created_timestamp": "2024-08-14T13:25:41+05:30",
+          "annotations": null
+        }
+      ],
+      "replica_metrics": [
+        {
+          "name": "petclinic-556f6787d",
+          "namespace": "petclinic",
+          "uid": "f315e90b-0788-4158-9a76-db865bfda7e5",
+          "created_timestamp": "2024-08-14T13:29:15+05:30",
+          "container_image": "egapm/springboot:petclinic-tomcat-openjdk8jre",
+          "container_port": 8080,
+          "cpu": "0",
+          "memory": "0"
+        }
+      ]
+    }
+  ]
+}
