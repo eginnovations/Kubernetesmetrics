@@ -16,9 +16,15 @@ import (
 )
 
 func main() {
+	kubeconfig := "C:/Users/HoneyChaudhary.C/.kube/config" // Path to kubeconfig in the container
+
 	data, err := os.ReadFile("config.yaml")
 	if err != nil {
 		log.Fatalf("error reading file: %v", err)
+	}
+
+	if data == nil || kubeconfig == "" {
+		log.Fatalf("kubeconfig or config file missing")
 	}
 
 	// Unmarshal the YAML file into the Config struct
@@ -27,8 +33,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("error unmarshalling YAML: %v", err)
 	}
-
-	kubeconfig := "C:/Users/HoneyChaudhary.C/.kube/config" // Path to kubeconfig in the container
 
 	//  metricsv "k8s.io/metrics/pkg/client/clientset/versioned"
 	config, err := clientcmd.BuildConfigFromFlags("", kubeconfig)
@@ -41,13 +45,9 @@ func main() {
 		log.Fatalf("Failed to create Kubernetes client: %v", err)
 	}
 
-	for {
-		err := getKubeMetrics(kubeClientset, &containerConfig)
-		if err != nil {
-			log.Printf("Error fetching metrics: %v", err)
-		}
-		fmt.Println("Waiting for next update...")
-		time.Sleep(60 * time.Second) // Fetch metrics every 60 seconds
+	metricsErr := getKubeMetrics(kubeClientset, &containerConfig)
+	if metricsErr != nil {
+		log.Printf("Error fetching metrics: %v", metricsErr)
 	}
 }
 
@@ -69,14 +69,11 @@ func getKubeMetrics(kubeClientset *kubernetes.Clientset, containerConfig *Config
 	deployments, _ := kubeClientset.AppsV1().Deployments(metav1.NamespaceAll).List(context.TODO(), metav1.ListOptions{})
 	daemons, _ := kubeClientset.AppsV1().DaemonSets(metav1.NamespaceAll).List(context.TODO(), metav1.ListOptions{})
 	replicas, _ := kubeClientset.AppsV1().ReplicaSets(metav1.NamespaceAll).List(context.TODO(), metav1.ListOptions{})
-	//stateful, _ := kubeClientset.AppsV1().StatefulSets(metav1.NamespaceAll).List(context.TODO(), metav1.ListOptions{})
-	//controller, _ := kubeClientset.AppsV1().ControllerRevisions(metav1.NamespaceAll).List(context.TODO(), metav1.ListOptions{})
 
 	pods, _ := kubeClientset.CoreV1().Pods(metav1.NamespaceAll).List(context.TODO(), metav1.ListOptions{})
 	nodes, _ := kubeClientset.CoreV1().Nodes().List(context.TODO(), metav1.ListOptions{})
 	namespaces, _ := kubeClientset.CoreV1().Namespaces().List(context.TODO(), metav1.ListOptions{})
 	services, _ := kubeClientset.CoreV1().Services(metav1.NamespaceAll).List(context.TODO(), metav1.ListOptions{})
-	//storage, _ := kubeClientset.ResourceV1alpha2().ResourceClaims(metav1.NamespaceAll).List(context.TODO(), metav1.ListOptions{})
 
 	var metrics Metrics
 
@@ -123,7 +120,7 @@ func getKubeMetrics(kubeClientset *kubernetes.Clientset, containerConfig *Config
 		for _, pat := range matchNameSpaces {
 			result := matchWildcard(namespaceLabel, pat)
 			if result {
-				fmt.Printf("\nmatchedNamespace: %s, matchedNamespacePattern: %s", namespaceLabel, pat)
+				log.Printf("matchedNamespace: %s, matchedNamespacePattern: %s", namespaceLabel, pat)
 			}
 		}
 
@@ -199,8 +196,8 @@ func getKubeMetrics(kubeClientset *kubernetes.Clientset, containerConfig *Config
 							podData.ContainerImage = pod.Spec.Containers[0].Image
 							podData.ContainerID = pod.Status.ContainerStatuses[0].ContainerID
 						}
-						fmt.Printf("\nmatchedlabel: %s ,  podName: %s\n", labels.Value, pod.Name)
-						fmt.Printf("container Selection: %s, matchedContainer: %v, matchedlabel: %v = %v \n", labels.ContainerSelection, podData.ContainerName, labels.Name, labels.Value)
+						log.Printf("matchedlabel: %s ,  podName: %s\n", labels.Value, pod.Name)
+						log.Printf("container Selection: %s, matchedContainer: %v, matchedlabel: %v = %v \n", labels.ContainerSelection, podData.ContainerName, labels.Name, labels.Value)
 					}
 				}
 
