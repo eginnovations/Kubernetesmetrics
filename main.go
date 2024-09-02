@@ -9,6 +9,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/urfave/cli/v2"
 	"gopkg.in/yaml.v2"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
@@ -16,25 +17,47 @@ import (
 )
 
 func main() {
-	kubeconfig := "C:/Users/HoneyChaudhary.C/.kube/config" // Path to kubeconfig in the container
+	var kubeconfig string
+	var crdconfigPath string
+	app := &cli.App{
+		Flags: []cli.Flag{
+			&cli.StringFlag{
+				Name:    "kubeconfig",
+				Aliases: []string{"c"},
+				Usage:   "Load kubeconfiguration from `FILE`",
+			},
+			&cli.StringFlag{
+				Name:    "crdconfig",
+				Aliases: []string{"crd"},
+				Usage:   "Load crd configuration from `FILE`",
+			},
+		},
+		Action: func(c *cli.Context) error {
+			kubeconfig = c.String("kubeconfig")
+			crdconfigPath = c.String("crdconfig")
+			return nil
+		},
+	}
 
-	data, err := os.ReadFile("config.yaml")
+	if err := app.Run(os.Args); err != nil {
+		log.Fatal(err)
+	}
+
+	if crdconfigPath == "" || kubeconfig == "" {
+		log.Fatalf("kubeconfig or config file missing")
+	}
+
+	crdconfig, err := os.ReadFile(crdconfigPath)
 	if err != nil {
 		log.Fatalf("error reading file: %v", err)
 	}
 
-	if data == nil || kubeconfig == "" {
-		log.Fatalf("kubeconfig or config file missing")
-	}
-
-	// Unmarshal the YAML file into the Config struct
 	var containerConfig Config
-	err = yaml.Unmarshal(data, &containerConfig)
+	err = yaml.Unmarshal(crdconfig, &containerConfig)
 	if err != nil {
 		log.Fatalf("error unmarshalling YAML: %v", err)
 	}
 
-	//  metricsv "k8s.io/metrics/pkg/client/clientset/versioned"
 	config, err := clientcmd.BuildConfigFromFlags("", kubeconfig)
 	if err != nil {
 		log.Fatalf("Failed to build kubeconfig: %v", err)
