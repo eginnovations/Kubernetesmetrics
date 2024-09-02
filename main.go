@@ -270,11 +270,6 @@ func getKubeMetrics(kubeClientset *kubernetes.Clientset, containerConfig *Config
 				replica.Namespace = rep.Namespace
 				replica.UID = string(rep.UID)
 				replica.CreatedTimestamp = rep.CreationTimestamp.Time
-				replica.ContainerImage = rep.Spec.Template.Spec.Containers[0].Image
-				replica.ContainerPort = rep.Spec.Template.Spec.Containers[0].Ports[0].ContainerPort
-				replica.Cpu = rep.Spec.Template.Spec.Containers[0].Resources.Requests.Cpu().String()
-				replica.Memory = rep.Spec.Template.Spec.Containers[0].Resources.Requests.Memory().String()
-
 				namespace.Replicas = append(namespace.Replicas, replica)
 			}
 		}
@@ -501,10 +496,6 @@ type Replica struct {
 	UID              string    `json:"uid,omitempty"`
 	CreatedTimestamp time.Time `json:"created_timestamp,omitempty"`
 	//Spec             any       `json:"spec,omitempty"`
-	ContainerImage string `json:"container_image,omitempty"`
-	ContainerPort  int32  `json:"container_port,omitempty"`
-	Cpu            string `json:"cpu,omitempty"`
-	Memory         string `json:"memory,omitempty"`
 }
 
 func matchWildcard(s, pattern string) bool {
