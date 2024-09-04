@@ -58,6 +58,20 @@ func main() {
 		log.Fatalf("error unmarshalling YAML: %v", err)
 	}
 
+	// Validate required fields
+	if containerConfig.Apiversion == "" {
+		log.Fatalf("Missing required field: apiVersion")
+	}
+	if containerConfig.Kind == "" {
+		log.Fatalf("Missing required field: kind")
+	}
+	if containerConfig.Metadata.Name == "" {
+		log.Fatalf("Missing required field: metadata.name")
+	}
+	if containerConfig.Metadata.Namespace == "" {
+		log.Fatalf("Missing required field: metadata.namespace")
+	}
+
 	config, err := clientcmd.BuildConfigFromFlags("", kubeconfig)
 	if err != nil {
 		log.Fatalf("Failed to build kubeconfig: %v", err)
