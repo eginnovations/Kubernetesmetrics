@@ -59,17 +59,17 @@ func main() {
 	}
 
 	// Validate required fields
-	if containerConfig.Apiversion == "" {
-		log.Fatalf("Missing required field: apiVersion")
+	if containerConfig.Apiversion != "eginnovations.com/v1beta1" {
+		log.Fatalf("Invalid apiVersion value: %v", containerConfig.Apiversion)
 	}
-	if containerConfig.Kind == "" {
-		log.Fatalf("Missing required field: kind")
+	if containerConfig.Kind != "EgUniversalAgent" {
+		log.Fatalf("Invalid kind value: %v", containerConfig.Kind)
 	}
-	if containerConfig.Metadata.Name == "" {
-		log.Fatalf("Missing required field: metadata.name")
+	if containerConfig.Metadata.Name != "eguniversalagent" {
+		log.Fatalf("Invalid metadata.name value: %v", containerConfig.Metadata.Name)
 	}
-	if containerConfig.Metadata.Namespace == "" {
-		log.Fatalf("Missing required field: metadata.namespace")
+	if containerConfig.Metadata.Namespace != "egagent" {
+		log.Fatalf("Invalid metadata.namespace value: %v", containerConfig.Metadata.Namespace)
 	}
 
 	config, err := clientcmd.BuildConfigFromFlags("", kubeconfig)
